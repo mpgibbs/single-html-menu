@@ -1,13 +1,13 @@
 Item Name,Item Price,Item Section
-Espresso,2.5,Coffee
-Latte,3,Coffee
-Cappuccino,3,Coffee
-Tea,2,Drinks
-Soda,2.5,Drinks
-Juice,3,Drinks
-Sandwich,5,Lunch
-Salad,6,Lunch
-Burger,7,Lunch
-Chips,2,Snacks
-Cookies,2.5,Snacks
-Brownies,3,Snacks
+Espresso,2.5,coffee
+Latte,3,coffee
+Cappuccino,3,coffee
+Tea,2,drinks
+Soda,2.5,drinks
+Juice,3,drinks
+Sandwich,5,lunch
+Salad,6,lunch
+Burger,7,lunch
+Chips,2,snacks
+Cookies,2.5,snacks
+Brownies,3,snacks
