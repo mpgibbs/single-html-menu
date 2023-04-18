@@ -6,57 +6,78 @@
   <title>Company Cafe Menu</title>
   <style>
     body {
-      background-color: #e1e8f0;
+      background-color: #ffffff;
       font-family: Arial, sans-serif;
-      font-size: 16px;
-      line-height: 1.5;
       margin: 0;
-      padding: 0;
     }
-    h1 {
-      font-size: 32px;
-      margin: 20px 0;
+    .header {
+      background-color: #ffffff;
+      color: #08031b;
+      padding: 20px;
       text-align: center;
-      text-transform: uppercase;
     }
-    .menu-section {
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      margin: 20px;
+    .menu-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
       padding: 20px;
     }
+    .menu-section {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      margin: 20px;
+      width: calc(33.33% - 40px);
+    }
     .menu-section h2 {
+      background-color: #08031b;
+      color: white;
       font-size: 24px;
-      margin: 0 0 10px 0;
+      padding: 10px;
+      margin: 0;
+      text-align: center;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
     }
     .menu-item {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    .menu-item:last-child {
+      border-bottom: none;
     }
     .menu-item-name {
       font-weight: bold;
     }
     .menu-item-price {
+      float: right;
       font-weight: bold;
+    }
+    @media only screen and (max-width: 768px) {
+      .menu-section {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
-  <h1 id="menu-title"></h1>
-  <div class="menu-section" id="coffee">
-    <h2>Coffee</h2>
-  </div>
-  <div class="menu-section" id="drinks">
-    <h2>Drinks</h2>
-  </div>
-  <div class="menu-section" id="lunch">
-    <h2>Lunch</h2>
-  </div>
-  <div class="menu-section" id="snacks">
-    <h2>Snacks</h2>
-  </div>
+    <div class="header">
+      <h1 id="menu-title"></h1>
+    </div>
+    <div class="menu-container">
+      <div class="menu-section" id="coffee">
+        <h2>Coffee</h2>
+      </div>
+      <div class="menu-section" id="drinks">
+        <h2>Drinks</h2>
+      </div>
+      <div class="menu-section" id="lunch">
+        <h2>Lunch</h2>
+      </div>
+      <div class="menu-section" id="snacks">
+        <h2>Snacks</h2>
+      </div>
+    </div>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       console.log('Fetching data...');
