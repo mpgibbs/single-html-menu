@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Company Cafe Menu</title>
+  <style>
+    body {
+      background-color: #e1e8f0;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      font-size: 32px;
+      margin: 20px 0;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .menu-section {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin: 20px;
+      padding: 20px;
+    }
+    .menu-section h2 {
+      font-size: 24px;
+      margin: 0 0 10px 0;
+    }
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .menu-item-name {
+      font-weight: bold;
+    }
+    .menu-item-price {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="menu-title"></h1>
+  <div class="menu-section" id="coffee">
+    <h2>Coffee</h2>
+  </div>
+  <div class="menu-section" id="drinks">
+    <h2>Drinks</h2>
+  </div>
+  <div class="menu-section" id="lunch">
+    <h2>Lunch</h2>
+  </div>
+  <div class="menu-section" id="snacks">
+    <h2>Snacks</h2>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('Fetching data...');
+      fetch('https://raw.githubusercontent.com/mpgibbs/single-html-menu/main/menu.csv?_t=' + new Date().getTime())
+        .then(response => response.text())
+        .then(data => {
+          console.log('Data fetched successfully.');
+          const rows = data.split('\n');
+          let menuTitle = rows[0].split(',')[0];
+          console.log(`Menu title: ${menuTitle}`);
+          document.getElementById('menu-title').textContent = menuTitle;
+          const currencyFormatter = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' });
+          for (let i = 1; i < rows.length; i++) {
+            const row = rows[i].split(',');
+            const itemName = row[0];
+            const itemPrice = parseFloat(row[1]).toFixed(2);
+            let itemSection = row[2];
+            if (itemSection) {
+              itemSection = itemSection.toLowerCase();
+              console.log(`Adding ${itemName} to section ${itemSection}...`);
+              const itemHtml = `<div class="menu-item"><span class="menu-item-name">${itemName}</span><span class="menu-item-price">${currencyFormatter.format(itemPrice)}</span></div>`;
+              const itemSectionElement = document.getElementById(itemSection);
+              if (itemSectionElement) {
+                itemSectionElement.insertAdjacentHTML('beforeend', itemHtml);
+                console.log(`Added ${itemName} to section ${itemSection}.`);
+              } else {
+                console.log(`Error: section ${itemSection} not found.`);
+              }
+            } else {
+              console.log(`Error: section not defined for ${itemName}.`);
+            }
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        });
+    });
+  </script>
+</body>
+</html>
+  
